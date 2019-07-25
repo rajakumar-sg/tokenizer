@@ -4,22 +4,22 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Randomizer {
-    char[] chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
-    char[] nums = "0123456789".toCharArray();
+    private final char[] chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
+    private final char[] nums = "0123456789".toCharArray();
 
-    private Map<String, String> random = new HashMap<>();
+    private Map<String, String> scrabledTokens = new HashMap<>();
 
-    public String randomize(String data) {
-        String ramdomData = random.get(data);
-        if (ramdomData == null) {
-            random.put(data, (ramdomData = generateRandom(data)));
+    public String randomize(String token) {
+        String scrambledToken = scrabledTokens.get(token);
+        if (scrambledToken == null) {
+            scrabledTokens.put(token, (scrambledToken = scramble(token)));
         }
 
-        return ramdomData;
+        return scrambledToken;
     }
 
-    private String generateRandom(String data) {
-        char[] input = data.toCharArray();
+    private String scramble(String token) {
+        char[] input = token.toCharArray();
         char[] result = new char[input.length];
 
         for (int i = 0; i < input.length; i++) {
